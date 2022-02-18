@@ -1,0 +1,56 @@
+<p>Employee works!</p>
+<app-employee></app-employee>
+<!---list of employee details-->
+<!--show the value of title with interpolation-->
+<h1>{{ title }}</h1>
+<!--show the value of title without interpolation-->
+<h1 [innerHTML]="title"></h1>
+<!--put a textbox and display value within the textbox from component data-->
+<input type="text" name="name" [innerHTML]="value" />
+
+<ul>
+  <li>Employee Id- {{ employee.empId }}</li>
+  <li>Employee Name- {{ employee.empName }}</li>
+  <li>Employee Salary- {{ employee.salary }}</li>
+  <li>
+    Employee Photo-
+    <img src="{{ employee[0].photo }}" alt="" width="30%" height="30%" />
+  </li>
+  <li>Employee Status- {{ employee.status }}</li>
+</ul>
+
+<h1>Iterating over array</h1>
+<ul>
+  <li *ngFor="let x of employee">
+    {{x.empId}} - {{x.empName}} - {{x.salary}} - {{x.photo}} - {{x.status}}
+  </li>
+</ul>
+
+<!--table with multiple rows and colomns-->
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Salary</th>
+      <th>Photo</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of employees">
+      <td>{{ emp.empId }}</td>
+      <td>{{ emp.empName | uppercase }}</td>
+      <td>{{ emp.salary | currency: "USD":"code" }}</td>
+      <td><img src="{{ emp.photo }}" [width]="width" [height]="height" /></td>
+      <td>
+        <button type="button" class="btn btn-secondary" [disabled]="flag">
+          Update
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!--dropdown for empID in it from employees-->
